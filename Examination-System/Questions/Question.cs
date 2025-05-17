@@ -11,7 +11,7 @@ namespace Examination_System.Questions
         public string Body { get; set; }
         public Header QHeader { get; set; }
         public int Marks { get; set; }
-        public List<Answer> Answers { get; set; }
+        public List<Answer> Answers { get; set; } = new List<Answer>();
         public Answer CorrectAnswer { get; set; }
         public Question(string body, Header header, int marks, List<Answer> answers, Answer correctAnswer)
         {
@@ -33,10 +33,18 @@ namespace Examination_System.Questions
             
         }
 
-        
+        protected Question(string body, int marks, Answer correctAnswer)
+        {
+            Body = body;
+            Marks = marks;
+            CorrectAnswer = correctAnswer;
+        }
 
-
-
+        public Question(string body, int marks)
+        {
+            Body = body;
+            Marks = marks;
+        }
     }
     public enum Header
     {

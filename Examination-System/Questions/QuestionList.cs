@@ -101,11 +101,7 @@ namespace Examination_System.Questions
                         else if (readingAnswers)
                         {
                             var parts = line.Split(':');
-                            currentAnswers.Add(new Answer
-                            {
-                                Index = int.Parse(parts[0]),
-                                AnswerBody = parts[1]
-                            });
+                            currentAnswers.Add(new Answer(int.Parse(parts[0]), parts[1]));
                         }
                     }
                 }
