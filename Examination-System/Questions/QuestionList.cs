@@ -43,7 +43,7 @@ namespace Examination_System.Questions
                     writer.WriteLine("ANSWERS_END");
 
                     // Write correct answer
-                    writer.WriteLine($"CORRECT_ANSWER:{question.CorrectAnswer.Index}");
+                    writer.WriteLine($"CORRECT_ANSWER:{question.getCorrectAnswersIdx()}");
                     writer.WriteLine("QUESTION_END");
                 }
             }
@@ -94,9 +94,16 @@ namespace Examination_System.Questions
                         }
                         else if (line.StartsWith("CORRECT_ANSWER:"))
                         {
-                            int correctIndex = int.Parse(line.Substring(15));
-                            currentQuestion.CorrectAnswer = currentAnswers.First(a => a.Index == correctIndex);
-                            this.Add(currentQuestion);
+                            string correctIndex = line.Substring(15);
+                            string[] idx = correctIndex.Split(',');
+                            int[] idx_ints = new int[idx.Length];
+                            for(int i = 0; i < idx_ints.Length; i++)
+                            {
+                                idx_ints[i] = int.Parse(idx[i]);
+                                currentQuestion.CorrectAnswer.Add(currentAnswers.First(a => a.Index == idx_ints[i]));
+                            }
+                            //currentQuestion.CorrectAnswer = currentAnswers.First(a => a.Index == correctIndex);
+                            base.Add(currentQuestion);
                         }
                         else if (readingAnswers)
                         {
@@ -132,7 +139,7 @@ namespace Examination_System.Questions
                         }
                         writer.WriteLine("ANSWERS_END");
 
-                        writer.WriteLine($"CORRECT_ANSWER:{question.CorrectAnswer.Index}");
+                        writer.WriteLine($"CORRECT_ANSWER:{question.getCorrectAnswersIdx()}");
                         writer.WriteLine("QUESTION_END");
                     }
                 }
@@ -141,6 +148,14 @@ namespace Examination_System.Questions
             {
                 Console.WriteLine($"Error saving all questions: {ex.Message}");
             }
+        }
+        public override string ToString()
+        {
+            string res = new string("");
+            foreach (var question in this) { 
+                res += question.ToString();
+            }
+            return res;
         }
     }
 }

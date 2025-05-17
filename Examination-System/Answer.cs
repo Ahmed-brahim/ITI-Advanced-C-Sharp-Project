@@ -24,7 +24,10 @@ namespace Examination_System
             Index = index;
             AnswerBody = answerBody;
         }
-
+        public override string ToString()
+        {
+            return $"\n   {index}) {this.AnswerBody}";
+        }
         public override bool Equals(object? obj)
         {
             if(obj == null || obj.GetType() != typeof(Answer))

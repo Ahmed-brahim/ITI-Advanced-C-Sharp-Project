@@ -15,7 +15,8 @@ namespace Examination_System.Exams
 
         public override void ShowExam()
         {
-            
+            //retrive questions
+            //
         }
     }
 }

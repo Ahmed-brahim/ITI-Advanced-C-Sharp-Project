@@ -12,21 +12,27 @@ namespace Examination_System.Questions
         public Header QHeader { get; set; }
         public int Marks { get; set; }
         public List<Answer> Answers { get; set; } = new List<Answer>();
-        public Answer CorrectAnswer { get; set; }
+        public List<Answer> CorrectAnswer { get; set; } = new List<Answer>();
         public Question(string body, Header header, int marks, List<Answer> answers, Answer correctAnswer)
         {
             Body = body;
             QHeader = header;
             Marks = marks;
             Answers = answers;
-            CorrectAnswer = correctAnswer;
+            CorrectAnswer.Add(correctAnswer);
+        }
+        public Question(string body, int marks, List<Answer> answers)
+        {
+            Body = body;
+            Marks = marks;
+            Answers = answers;
         }
         protected Question(string body, int marks, List<Answer> answers, Answer correctAnswer)
         {
             Body = body;
             Marks = marks;
             Answers = answers;
-            CorrectAnswer = correctAnswer;
+            CorrectAnswer.Add(correctAnswer);
         }
         public Question()
         {
@@ -37,13 +43,36 @@ namespace Examination_System.Questions
         {
             Body = body;
             Marks = marks;
-            CorrectAnswer = correctAnswer;
+            CorrectAnswer.Add(correctAnswer);
         }
 
         public Question(string body, int marks)
         {
             Body = body;
             Marks = marks;
+        }
+        public string getCorrectAnswersIdx()
+        {
+            int[] idx = new int[CorrectAnswer.Count()]; 
+            for(int i = 0; i < idx.Length; i++)
+            {
+                idx[i] = CorrectAnswer[i].Index;
+            }
+            return string.Join(',', idx);
+        }
+        public override string ToString()
+        {
+            string ans = string.Empty;
+            string Cans = string.Empty;
+            foreach(var i in Answers)
+            {
+                ans += i.ToString();
+            }
+            foreach(var i in CorrectAnswer)
+            { 
+                Cans += i.ToString();
+            }
+            return $"-header:{this.QHeader}\n-Body: {Body}\n-answers: {ans}\n-Marks: {Marks}\n-Correct Answer: {Cans}\n\n";
         }
     }
     public enum Header

@@ -8,9 +8,10 @@ namespace Examination_System.Questions
 {
     public class ChooseOneQuestion:Question
     {
-        public ChooseOneQuestion(string body, int marks, List<Answer> answers, Answer correctAnswer):base(body, marks, answers, correctAnswer)
+        public ChooseOneQuestion(string body, int marks, List<Answer> answers, int correctAnsewrIndex):base(body, marks, answers)
         {
             QHeader = Header.ChooseOne;
+            CorrectAnswer.Add(answers.FirstOrDefault(ans => ans.Index == correctAnsewrIndex));
         }
     }
 }
