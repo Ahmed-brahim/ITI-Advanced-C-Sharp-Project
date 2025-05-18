@@ -26,7 +26,7 @@ namespace Examination_System
         }
         public override string ToString()
         {
-            return $"\n   {index}) {this.AnswerBody}";
+            return $"   {index}) {this.AnswerBody}";
         }
         public override bool Equals(object? obj)
         {

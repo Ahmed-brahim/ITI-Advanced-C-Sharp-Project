@@ -17,9 +17,12 @@ namespace Examination_System
             answerList.Add(new Answer(2, "Answer2"));
             answerList.Add(new Answer(3, "Answer3t"));
             answerList.Add(new Answer(4, "Answer4"));
+            //questions.Add(new ChooseAllQuestion("test choose ALl", 3, answerList, new int[] { 1, 2, 3 }));
             //questions.Add(new ChooseOneQuestion("test select one question", 2, answerList, 3));
-            Exam e1 = new PracticalExam(10, 5, subject, questions);
-            Console.WriteLine(questions);
+            //Exam e1 = new PracticalExam(10, 5, subject, questions);
+            PracticalExam p1 = new PracticalExam(20, 4, subject, questions);
+            p1.ShowExam();
+            //Console.WriteLine(e1.questionList);
         }
     }
 }

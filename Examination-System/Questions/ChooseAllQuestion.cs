@@ -8,9 +8,13 @@ namespace Examination_System.Questions
 {
     public class ChooseAllQuestion:Question
     {
-        public ChooseAllQuestion(string body, int marks, List<Answer> answers, Answer correctAnswer) : base(body, marks, answers, correctAnswer)
+        public ChooseAllQuestion(string body, int marks, List<Answer> answers, int[] correctAnswerIdx) : base(body, marks, answers)
         {
-            QHeader = Header.ChooseOne;
+            QHeader = Header.ChooseAll;
+            for(int i = 0; i < correctAnswerIdx.Length; i++)
+            {
+                CorrectAnswer.Add(answers.FirstOrDefault(ans => ans.Index == correctAnswerIdx[i]));
+            }
         }
     }
 }

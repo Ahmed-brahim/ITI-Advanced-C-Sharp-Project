@@ -7,7 +7,7 @@ namespace Examination_System.Questions
 {
     public class QuestionList : List<Question>
     {
-        private string _filePath;
+        string _filePath;
 
         public QuestionList(string filePath)
         {
@@ -17,10 +17,7 @@ namespace Examination_System.Questions
 
         public new void Add(Question question)
         {
-            // Default List<T> behavior
             base.Add(question);
-
-            // Additional behavior - log to file
             LogQuestionToFile(question);
         }
 
@@ -94,13 +91,13 @@ namespace Examination_System.Questions
                         }
                         else if (line.StartsWith("CORRECT_ANSWER:"))
                         {
-                            string correctIndex = line.Substring(15);
+                            string correctIndex = line.Substring(15); //1,2,3
                             string[] idx = correctIndex.Split(',');
                             int[] idx_ints = new int[idx.Length];
                             for(int i = 0; i < idx_ints.Length; i++)
                             {
                                 idx_ints[i] = int.Parse(idx[i]);
-                                currentQuestion.CorrectAnswer.Add(currentAnswers.First(a => a.Index == idx_ints[i]));
+                                currentQuestion.CorrectAnswer.Add(currentAnswers.FirstOrDefault(a => a.Index == idx_ints[i]));
                             }
                             //currentQuestion.CorrectAnswer = currentAnswers.First(a => a.Index == correctIndex);
                             base.Add(currentQuestion);
@@ -119,36 +116,36 @@ namespace Examination_System.Questions
             }
         }
 
-        public void SaveAllQuestions()
-        {
-            try
-            {
-                // Overwrite the file with all current questions
-                using (StreamWriter writer = new StreamWriter(_filePath, false))
-                {
-                    foreach (var question in this)
-                    {
-                        writer.WriteLine($"HEADER:{question.QHeader}");
-                        writer.WriteLine($"BODY:{question.Body}");
-                        writer.WriteLine($"MARKS:{question.Marks}");
+        //public void SaveAllQuestions()
+        //{
+        //    try
+        //    {
+        //        // Overwrite the file with all current questions
+        //        using (StreamWriter writer = new StreamWriter(_filePath, false))
+        //        {
+        //            foreach (var question in this)
+        //            {
+        //                writer.WriteLine($"HEADER:{question.QHeader}");
+        //                writer.WriteLine($"BODY:{question.Body}");
+        //                writer.WriteLine($"MARKS:{question.Marks}");
 
-                        writer.WriteLine("ANSWERS_START");
-                        foreach (var answer in question.Answers)
-                        {
-                            writer.WriteLine($"{answer.Index}:{answer.AnswerBody}");
-                        }
-                        writer.WriteLine("ANSWERS_END");
+        //                writer.WriteLine("ANSWERS_START");
+        //                foreach (var answer in question.Answers)
+        //                {
+        //                    writer.WriteLine($"{answer.Index}:{answer.AnswerBody}");
+        //                }
+        //                writer.WriteLine("ANSWERS_END");
 
-                        writer.WriteLine($"CORRECT_ANSWER:{question.getCorrectAnswersIdx()}");
-                        writer.WriteLine("QUESTION_END");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error saving all questions: {ex.Message}");
-            }
-        }
+        //                writer.WriteLine($"CORRECT_ANSWER:{question.getCorrectAnswersIdx()}");
+        //                writer.WriteLine("QUESTION_END");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error saving all questions: {ex.Message}");
+        //    }
+        //}
         public override string ToString()
         {
             string res = new string("");

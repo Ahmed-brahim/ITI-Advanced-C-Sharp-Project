@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,11 @@ namespace Examination_System.Questions
         public int Marks { get; set; }
         public List<Answer> Answers { get; set; } = new List<Answer>();
         public List<Answer> CorrectAnswer { get; set; } = new List<Answer>();
+        #region Constructors
+        public Question()
+        {
+
+        }
         public Question(string body, Header header, int marks, List<Answer> answers, Answer correctAnswer)
         {
             Body = body;
@@ -34,10 +40,6 @@ namespace Examination_System.Questions
             Answers = answers;
             CorrectAnswer.Add(correctAnswer);
         }
-        public Question()
-        {
-            
-        }
 
         protected Question(string body, int marks, Answer correctAnswer)
         {
@@ -51,15 +53,28 @@ namespace Examination_System.Questions
             Body = body;
             Marks = marks;
         }
+        #endregion
+        #region Metods
         public string getCorrectAnswersIdx()
         {
-            int[] idx = new int[CorrectAnswer.Count()]; 
+            int[] idx = new int[CorrectAnswer.Count()];
             for(int i = 0; i < idx.Length; i++)
             {
                 idx[i] = CorrectAnswer[i].Index;
             }
-            return string.Join(',', idx);
+            return string.Join(',', idx); 
         }
+        public void PrintExamQuestion(int index)
+        {
+            Console.WriteLine($"{index}- {QHeader}: {Body}");
+            foreach(var ans in Answers)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine(ans);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+        #endregion
         public override string ToString()
         {
             string ans = string.Empty;
@@ -73,6 +88,16 @@ namespace Examination_System.Questions
                 Cans += i.ToString();
             }
             return $"-header:{this.QHeader}\n-Body: {Body}\n-answers: {ans}\n-Marks: {Marks}\n-Correct Answer: {Cans}\n\n";
+        }
+
+        public string PrintCorrectAns()
+        {
+            string Cans = null;
+            foreach (var i in CorrectAnswer)
+            {
+                Cans += i.ToString();
+            }
+            return Cans;
         }
     }
     public enum Header
