@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,7 +90,19 @@ namespace Examination_System.Questions
             }
             return $"-header:{this.QHeader}\n-Body: {Body}\n-answers: {ans}\n-Marks: {Marks}\n-Correct Answer: {Cans}\n\n";
         }
-
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Question question = obj as Question;
+            return  question.Body == this.Body && question.QHeader == this.QHeader && question.Marks == this.Marks;
+        }
         public string PrintCorrectAns()
         {
             string Cans = null;

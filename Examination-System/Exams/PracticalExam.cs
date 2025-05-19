@@ -9,6 +9,10 @@ namespace Examination_System.Exams
 {
     public class PracticalExam:Exam
     {
+        public PracticalExam(int timeInMinutes, int numberOfQuestions, Subject subject) : base(timeInMinutes, numberOfQuestions, subject)
+        {
+        }
+
         public PracticalExam(int timeInMinutes, int numberOfQuestions, Subject subject, QuestionList questionList) : base(timeInMinutes, numberOfQuestions, subject, questionList)
         {
         }
@@ -74,12 +78,13 @@ namespace Examination_System.Exams
                 }
                     
                 //show correct answer
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write($"your amswer is:");
-                foreach (var ans in QuestionAnswer[questionList[i]])
-                {
-                    Console.WriteLine(ans);
-                }
+                //print my answer
+                //Console.ForegroundColor = ConsoleColor.Yellow;
+                //Console.Write($"your amswer is:");
+                //foreach (var ans in QuestionAnswer[questionList[i]])
+                //{
+                //    Console.WriteLine(ans);
+                //}
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"correct answer is: {questionList[i].PrintCorrectAns()}");
                 Console.ForegroundColor = ConsoleColor.White;
