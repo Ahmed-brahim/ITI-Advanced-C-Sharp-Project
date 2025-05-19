@@ -34,7 +34,7 @@ namespace Examination_System.Exams
                         {
                             Console.Write("Enter your answer:");
                             flag = int.TryParse(Console.ReadLine(), out AnswerIdx);
-                            if(AnswerIdx < 1 && AnswerIdx > 2)
+                            if(AnswerIdx < 1 || AnswerIdx > 2)
                             {
                                 flag = false;
                             }
@@ -46,7 +46,7 @@ namespace Examination_System.Exams
                         {
                             Console.Write("Enter your answer:");
                             flag = int.TryParse(Console.ReadLine(), out AnswerIdx);
-                            if (AnswerIdx < 1 && AnswerIdx > 4)
+                            if (AnswerIdx < 1 || AnswerIdx > 4)
                             {
                                 flag = false;
                             }

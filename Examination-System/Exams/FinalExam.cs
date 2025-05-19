@@ -35,7 +35,7 @@ namespace Examination_System.Exams
                         {
                             Console.Write("Enter your answer:");
                             flag = int.TryParse(Console.ReadLine(), out AnswerIdx);
-                            if (AnswerIdx < 1 && AnswerIdx > 2)
+                            if (AnswerIdx < 1 || AnswerIdx > 2)
                             {
                                 flag = false;
                             }
@@ -47,7 +47,7 @@ namespace Examination_System.Exams
                         {
                             Console.Write("Enter your answer:");
                             flag = int.TryParse(Console.ReadLine(), out AnswerIdx);
-                            if (AnswerIdx < 1 && AnswerIdx > 4)
+                            if (AnswerIdx < 1 || AnswerIdx > 4)
                             {
                                 flag = false;
                             }
@@ -78,7 +78,13 @@ namespace Examination_System.Exams
                         break;
                 }
             }
-
+            Console.Clear();
+            Console.WriteLine("Congratulations you finished the Exam");
+            Console.WriteLine();
+            int[] scores = base.CalculateScore(); //0 => total score    1 => student score
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nYour Score is {scores[1]} from {scores[0]}");
+            Console.ForegroundColor= ConsoleColor.White;
         }
     }
 }

@@ -88,7 +88,8 @@ namespace Examination_System.Questions
             { 
                 Cans += i.ToString();
             }
-            return $"-header:{this.QHeader}\n-Body: {Body}\n-answers: {ans}\n-Marks: {Marks}\n-Correct Answer: {Cans}\n\n";
+            return $"-header:{this.QHeader}\n-Body: {Body}\n-answers: {ans}\n-Marks: {Marks}\n-Correct Answer: {Cans}" +
+                $"-------------------------------------\n\n";
         }
         public override int GetHashCode()
         {

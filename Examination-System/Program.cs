@@ -60,14 +60,15 @@ namespace Examination_System
             } while (!flag);
             Console.Clear();
             Exam e1 = null;
-            switch (choice)
+            switch (examCh)
             {
                 case 1:
                     e1 = new PracticalExam(20, 5, list[choice - 1]);
                     e1.ShowExam();
                     break;
                 case 2:
-                    e1 = new FinalExam(50, 20, list[choice - 1]);
+                    e1 = new FinalExam(50, 3, list[choice - 1]);
+                    e1.ShowExam();
                     return;
             }
         }

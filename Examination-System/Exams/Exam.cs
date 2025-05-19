@@ -15,7 +15,7 @@ namespace Examination_System.Exams
         public Subject Subject;
         public QuestionList questionList;
         int score { get; set; } = -1;
-        public Dictionary<Question, List<Answer> > QuestionAnswer { get; set; } = new Dictionary<Question, List<Answer>>();
+        public Dictionary<Question, List<Answer>> QuestionAnswer { get; set; } = new Dictionary<Question, List<Answer>>();
 
         public Exam(int timeInMinutes, int numberOfQuestions, Subject subject, QuestionList questionList)
         {
@@ -48,6 +48,39 @@ namespace Examination_System.Exams
             }
             return answer;
         }
-
+        public int[] CalculateScore()
+        {
+            int totalScore = 0;
+            int score = 0;
+            foreach(var d in QuestionAnswer)
+            {
+                totalScore += d.Key.Marks;
+                if(d.Key.QHeader == Header.ChooseOne || d.Key.QHeader == Header.TrueOrFalse)
+                {
+                    if (d.Key.CorrectAnswer[0] == d.Value[0])
+                        score += d.Key.Marks;
+                }
+                else
+                {
+                    bool flag = false;
+                    foreach(var s in d.Value)
+                    {
+                        if (d.Key.CorrectAnswer.Any(ans => ans == s))
+                        {
+                            flag = true;
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+                    }
+                    if (flag)
+                    {
+                        score += d.Key.Marks;
+                    }
+                }
+            }
+            return new int[] { totalScore, score};
+        }
     }
 }
