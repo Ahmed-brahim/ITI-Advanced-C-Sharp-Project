@@ -7,28 +7,16 @@ namespace Examination_System
     {
         static void Main(string[] args)
         {
-            //Subject subject = new Subject("Science");
-            //QuestionList questions = new QuestionList($"{subject.Name}.txt");
-
-            //questions.Add(new TrueOrFalseQuestion("Humans use 100% of their brains", 2, 2));
-            //questions.Add(new TrueOrFalseQuestion("All bacteria are harmful to humans", 2, 2));
-            //List<Answer> answerList = new List<Answer>();
-            //answerList.Add(new Answer(1, "Answer1"));
-            //answerList.Add(new Answer(2, "Answer2"));
-            //answerList.Add(new Answer(3, "Answer3t"));
-            //answerList.Add(new Answer(4, "Answer4"));
-            //questions.Add(new ChooseAllQuestion("test choose ALl", 3, answerList, new int[] { 1, 2, 3 }));
-            //questions.Add(new ChooseOneQuestion("test select one question", 2, answerList, 3));
-            //Exam e1 = new PracticalExam(10, 5, subject, questions);
-            //PracticalExam p1 = new PracticalExam(20, 4, subject, questions);
-            //p1.ShowExam();
-            //Console.WriteLine(e1.questionList);
+            //generate subject matched with files name
             Subject s1 = new Subject("English");
             Subject s2 = new Subject("Math");
             Subject s3 = new Subject("Computer");
             Subject s4 = new Subject("History");
             Subject s5 = new Subject("Geography");
+            //generate subjects list
             List<Subject> list = new List<Subject>() {s1, s2, s3, s4, s5};
+
+            #region interfacing
             Console.WriteLine("Exam Subjects:");
             for(int i = 0; i < list.Count(); i++)
             {
@@ -67,10 +55,39 @@ namespace Examination_System
                     e1.ShowExam();
                     break;
                 case 2:
-                    e1 = new FinalExam(50, 3, list[choice - 1]);
+                    e1 = new FinalExam(50, 10, list[choice - 1]); // 10 => number of questions
                     e1.ShowExam();
                     return;
             }
+            #endregion
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//Subject subject = new Subject("Science");
+//QuestionList questions = new QuestionList($"{subject.Name}.txt");
+
+//questions.Add(new TrueOrFalseQuestion("Humans use 100% of their brains", 2, 2));
+//questions.Add(new TrueOrFalseQuestion("All bacteria are harmful to humans", 2, 2));
+//List<Answer> answerList = new List<Answer>();
+//answerList.Add(new Answer(1, "Answer1"));
+//answerList.Add(new Answer(2, "Answer2"));
+//answerList.Add(new Answer(3, "Answer3t"));
+//answerList.Add(new Answer(4, "Answer4"));
+//questions.Add(new ChooseAllQuestion("test choose ALl", 3, answerList, new int[] { 1, 2, 3 }));
+//questions.Add(new ChooseOneQuestion("test select one question", 2, answerList, 3));
+//Exam e1 = new PracticalExam(10, 5, subject, questions);
+//PracticalExam p1 = new PracticalExam(20, 4, subject, questions);
+//p1.ShowExam();
+//Console.WriteLine(e1.questionList);

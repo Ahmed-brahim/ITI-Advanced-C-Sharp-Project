@@ -9,7 +9,7 @@ namespace Examination_System.Exams
 {
     public class Exam
     {
-        //Time, number of Questions, Question Answer Dictionary(Which will be used for Exam Correction)
+
         int timeInMinutes;
         public int numberOfQuestions;
         public Subject Subject;
