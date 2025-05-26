@@ -17,6 +17,7 @@ namespace Examination_System.Exams
         int score { get; set; } = -1;
         public Dictionary<Question, List<Answer>> QuestionAnswer { get; set; } = new Dictionary<Question, List<Answer>>();
 
+        #region constructors
         public Exam(int timeInMinutes, int numberOfQuestions, Subject subject, QuestionList questionList)
         {
             this.timeInMinutes = timeInMinutes;
@@ -31,6 +32,7 @@ namespace Examination_System.Exams
             this.Subject = subject;
             this.questionList = new QuestionList($"{subject.Name}.txt");
         }
+        #endregion
 
         public virtual void ShowExam()
         { }

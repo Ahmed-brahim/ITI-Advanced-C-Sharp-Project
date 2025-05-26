@@ -102,7 +102,7 @@ namespace Examination_System.Questions
                             //currentQuestion.CorrectAnswer = currentAnswers.First(a => a.Index == correctIndex);
                             base.Add(currentQuestion);
                         }
-                        else if (readingAnswers)
+                        else if (readingAnswers)  
                         {
                             var parts = line.Split(':');
                             currentAnswers.Add(new Answer(int.Parse(parts[0]), parts[1]));
@@ -116,36 +116,6 @@ namespace Examination_System.Questions
             }
         }
 
-        //public void SaveAllQuestions()
-        //{
-        //    try
-        //    {
-        //        // Overwrite the file with all current questions
-        //        using (StreamWriter writer = new StreamWriter(_filePath, false))
-        //        {
-        //            foreach (var question in this)
-        //            {
-        //                writer.WriteLine($"HEADER:{question.QHeader}");
-        //                writer.WriteLine($"BODY:{question.Body}");
-        //                writer.WriteLine($"MARKS:{question.Marks}");
-
-        //                writer.WriteLine("ANSWERS_START");
-        //                foreach (var answer in question.Answers)
-        //                {
-        //                    writer.WriteLine($"{answer.Index}:{answer.AnswerBody}");
-        //                }
-        //                writer.WriteLine("ANSWERS_END");
-
-        //                writer.WriteLine($"CORRECT_ANSWER:{question.getCorrectAnswersIdx()}");
-        //                writer.WriteLine("QUESTION_END");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error saving all questions: {ex.Message}");
-        //    }
-        //}
         public override string ToString()
         {
             string res = new string("");

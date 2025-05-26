@@ -55,7 +55,7 @@ namespace Examination_System
                     e1.ShowExam();
                     break;
                 case 2:
-                    e1 = new FinalExam(50, 10, list[choice - 1]); // 10 => number of questions
+                    e1 = new FinalExam(50, 3, list[choice - 1]); // 10 => number of questions
                     e1.ShowExam();
                     return;
             }

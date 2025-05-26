@@ -23,6 +23,7 @@ namespace Examination_System.Exams
             //show questions
             for (int i = 0; i < numberOfQuestions; i++)
             {
+                Console.WriteLine("-------------------------------------------------");
                 questionList[i].PrintExamQuestion(i + 1);
                 Console.WriteLine();
                 bool flag = true;
@@ -66,6 +67,7 @@ namespace Examination_System.Exams
                                 flag = int.TryParse(ansSplit[k], out ints[k]);
                                 if (!flag || ints[k] < 0 || ints[k] > 4) //check
                                 {
+                                    flag = false;
                                     break;
                                 }
                             }
