@@ -66,12 +66,6 @@ Examination_System/
 
 ---
 
-## 📬 Contribution
-
-Pull requests are welcome. If you encounter any bugs or want to request new features, feel free to open an issue.
-
----
-
 ## 📄 License
 
 This project is open-source and available under the MIT License.
